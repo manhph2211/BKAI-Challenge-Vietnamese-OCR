@@ -1,7 +1,7 @@
 import argparse
+from models.trainer import Trainer
+from config.config import Cfg
 
-from ..model.trainer import Trainer
-from ..tool.config import Cfg
 
 def main():
     parser = argparse.ArgumentParser()
@@ -19,4 +19,5 @@ def main():
     trainer.train()
 
 if __name__ == '__main__':
-    main()
+    # main()
+    pass
