@@ -25,9 +25,9 @@ trainer:
     valid_every: 4000
     iters: 100000
     # where to save our model for prediction
-    export: ./weights/transformerocr.pth
-    checkpoint: ./checkpoint/transformerocr_checkpoint.pth
-    log: ./train.log
+    export: ./checkpoints/transformerocr.pth
+    checkpoint: ../checkpoints/transformerocr_checkpoint.pth
+    log: ../experiments/train.log
     # null to disable compuate accuracy, or change to number of sample to enable validiation while training
     metrics: null
 
