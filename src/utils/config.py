@@ -1,5 +1,5 @@
 import yaml
-from src.utils.utils import download_config
+from vietocr.utils.utils import download_config
 
 url_config = {
         'vgg_transformer':'vgg-transformer.yml',
@@ -37,3 +37,4 @@ class Cfg(dict):
     def save(self, fname):
         with open(fname, 'w') as outfile:
             yaml.dump(dict(self), outfile, default_flow_style=False, allow_unicode=True)
+

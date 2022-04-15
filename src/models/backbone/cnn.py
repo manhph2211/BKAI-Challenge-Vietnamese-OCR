@@ -1,8 +1,8 @@
 import torch
 from torch import nn
 
-import vietocr.model.backbone.vgg as vgg
-from vietocr.model.backbone.resnet import Resnet50
+import src.model.backbone.vgg as vgg
+from src.model.backbone.resnet import Resnet50
 
 class CNN(nn.Module):
     def __init__(self, backbone, **kwargs):

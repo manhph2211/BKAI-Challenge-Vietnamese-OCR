@@ -1,29 +1,23 @@
-from vietocr.optim.optim import ScheduledOptim
-from vietocr.optim.labelsmoothingloss import LabelSmoothingLoss
-from torch.optim import Adam, SGD, AdamW
-from torch import nn
-from vietocr.tool.translate import build_model
-from vietocr.tool.translate import translate, batch_translate_beam_search
-from vietocr.tool.utils import download_weights
-from vietocr.tool.logger import Logger
-from vietocr.loader.aug import ImgAugTransform
-
-import yaml
+from src.optim.optim import ScheduledOptim
+from src.optim.labelsmoothingloss import LabelSmoothingLoss
+from torch.optim import Adam, AdamW
+from src.utils.translate import build_model
+from src.utils.translate import translate, batch_translate_beam_search
+from src.utils.utils import download_weights
+from src.utils.logger import Logger
+from src.datasets.aug import ImgAugTransform
+from src.datasets.dataloader_v1 import DataGen
+from src.datasets.dataloader import OCRDataset, ClusterRandomSampler, Collator
+from torch.utils.data import Datadatasets
 import torch
-from vietocr.loader.dataloader_v1 import DataGen
-from vietocr.loader.dataloader import OCRDataset, ClusterRandomSampler, Collator
-from torch.utils.data import DataLoader
-from einops import rearrange
 from torch.optim.lr_scheduler import CosineAnnealingLR, CyclicLR, OneCycleLR
-
-import torchvision 
-
-from vietocr.tool.utils import compute_accuracy
+from src.utils.utils import compute_accuracy
 from PIL import Image
 import numpy as np
 import os
 import matplotlib.pyplot as plt
 import time
+
 
 class Trainer():
     def __init__(self, config, pretrained=True, augmentor=ImgAugTransform()):
@@ -86,7 +80,7 @@ class Trainer():
     def train(self):
         total_loss = 0
         
-        total_loader_time = 0
+        total_datasets_time = 0
         total_gpu_time = 0
         best_acc = 0
 
@@ -102,7 +96,7 @@ class Trainer():
                 data_iter = iter(self.train_gen)
                 batch = next(data_iter)
 
-            total_loader_time += time.time() - start
+            total_datasets_time += time.time() - start
 
             start = time.time()
             loss = self.step(batch)
@@ -114,10 +108,10 @@ class Trainer():
             if self.iter % self.print_every == 0:
                 info = 'iter: {:06d} - train loss: {:.3f} - lr: {:.2e} - load time: {:.2f} - gpu time: {:.2f}'.format(self.iter, 
                         total_loss/self.print_every, self.optimizer.param_groups[0]['lr'], 
-                        total_loader_time, total_gpu_time)
+                        total_datasets_time, total_gpu_time)
 
                 total_loss = 0
-                total_loader_time = 0
+                total_datasets_time = 0
                 total_gpu_time = 0
                 print(info) 
                 self.logger.log(info)
@@ -317,14 +311,14 @@ class Trainer():
         sampler = ClusterRandomSampler(dataset, self.batch_size, True)
         collate_fn = Collator(masked_language_model)
 
-        gen = DataLoader(
+        gen = Datadatasets(
                 dataset,
                 batch_size=self.batch_size, 
                 sampler=sampler,
                 collate_fn = collate_fn,
                 shuffle=False,
                 drop_last=False,
-                **self.config['dataloader'])
+                **self.config['datadatasets'])
        
         return gen
 

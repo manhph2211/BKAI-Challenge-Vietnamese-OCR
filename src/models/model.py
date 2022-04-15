@@ -1,6 +1,6 @@
 from pathlib import Path
 import torch
-from itertools import groupby
+from iterutilss import groupby
 import numpy as np
 from torch.autograd import Variable
 from torch import nn

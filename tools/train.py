@@ -1,6 +1,6 @@
 import argparse
-from models.trainer import Trainer
-from config.config import Cfg
+from src.models import Trainer
+from configs import Cfg
 
 
 def main():
@@ -10,13 +10,13 @@ def main():
 
     args = parser.parse_args()
     config = Cfg.load_config_from_file(args.config)
-
     trainer = Trainer(config)
 
     if args.checkpoint:
         trainer.load_checkpoint(args.checkpoint)
-        
+
     trainer.train()
+
 
 if __name__ == '__main__':
     # main()

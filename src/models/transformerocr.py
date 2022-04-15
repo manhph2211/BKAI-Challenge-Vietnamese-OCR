@@ -1,16 +1,16 @@
-from vietocr.model.backbone.cnn import CNN
-from vietocr.model.seqmodel.transformer import LanguageTransformer
-from vietocr.model.seqmodel.seq2seq import Seq2Seq
-from vietocr.model.seqmodel.convseq2seq import ConvSeq2Seq
+from src.model.backbone.cnn import CNN
+from src.model.seqmodel.transformer import LanguageTransformer
+from src.model.seqmodel.seq2seq import Seq2Seq
+from src.model.seqmodel.convseq2seq import ConvSeq2Seq
 from torch import nn
 
-class VietOCR(nn.Module):
+class src(nn.Module):
     def __init__(self, vocab_size,
                  backbone,
                  cnn_args, 
                  transformer_args, seq_modeling='transformer'):
         
-        super(VietOCR, self).__init__()
+        super(src, self).__init__()
         
         self.cnn = CNN(backbone, **cnn_args)
         self.seq_modeling = seq_modeling
