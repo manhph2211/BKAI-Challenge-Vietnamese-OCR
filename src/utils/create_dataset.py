@@ -1,5 +1,6 @@
 import sys
 import os
+import  glob
 import lmdb # install lmdb by "pip install lmdb"
 import cv2
 import numpy as np
@@ -91,3 +92,14 @@ def createDataset(outputPath, root_dir, annotation_path):
     print('Created dataset with %d samples' % nSamples)
     sys.stdout.flush()
 
+
+def get_text_from_img_name(img_path, label_root = '../../data/labels'):
+    label_file = os.path.join(label_root,img_path.split('/')[-1].replace('jpg','txt'))
+    with open(label_file, 'r') as f:
+        pass
+
+
+def create_anno(path_to_label, path_to_img_folder, save_file):
+    img_paths = glob.glob(os.path.join(path_to_img_folder,'*.jpg'))
+    with open(save_file,'w') as f:
+        pass
