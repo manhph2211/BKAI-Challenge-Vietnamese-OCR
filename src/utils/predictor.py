@@ -1,5 +1,5 @@
-from vietocr.utils.translate import build_model, translate, translate_beam_search, process_input, predict
-from vietocr.utils.utils import download_weights
+from src.utils.translate import build_model, translate, translate_beam_search, process_input, predict
+from src.utils.utils import download_weights
 
 import torch
 from collections import defaultdict

@@ -1,5 +1,5 @@
 import argparse
-from src.models import Trainer
+from src.model import Trainer
 from configs import Cfg
 
 

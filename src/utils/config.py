@@ -1,5 +1,5 @@
 import yaml
-from vietocr.utils.utils import download_config
+from src.utils.utils import download_config
 
 url_config = {
         'vgg_transformer':'vgg-transformer.yml',
