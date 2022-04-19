@@ -35,9 +35,13 @@ dataset:
     # name of your dataset
     name: data
     # path to annotation and image
-    data_root: ./img/
+    data_root: /home/max/coding/TransOCR-Pytorch/data
+    labels_folder: labels
+    train_folder: train_images
+    test_folder: test_image
+    save_folder: custom_data
     train_annotation: annotation_train.txt
-    valid_annotation: annotation_val_small.txt
+    test_annotation: annotation_test.txt
     # resize image to 32 height, larger height will increase accuracy
     image_height: 32
     image_min_width: 32

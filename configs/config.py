@@ -1,4 +1,5 @@
 import yaml
+import os
 from src.utils.utils import download_config
 
 url_config = {
@@ -23,15 +24,18 @@ class Cfg(dict):
         with open(fname, encoding='utf-8') as f:
             config = yaml.safe_load(f)
         base_config.update(config)
-
         return Cfg(base_config)
-
+    
     @staticmethod
     def load_config_from_name(name):
-        base_config = download_config(url_config['base'])
-        config = download_config(url_config[name])
+        # base_config = download_config(url_config['base'])
+        # config = download_config(url_config[name])
 
-        base_config.update(config)
+        # base_config.update(config)
+        base_config = {}
+        with open(os.path.join('/home/max/coding/TransOCR-Pytorch/configs',url_config[name]), encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+        base_config.update(config)        
         return Cfg(base_config)
 
     def save(self, fname):

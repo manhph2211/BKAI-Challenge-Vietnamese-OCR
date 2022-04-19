@@ -5,6 +5,12 @@ import lmdb # install lmdb by "pip install lmdb"
 import cv2
 import numpy as np
 from tqdm import tqdm
+import matplotlib.pyplot as plt 
+from PIL import Image
+import sys
+sys.path.append('/home/max/coding/TransOCR-Pytorch')
+from configs import Cfg
+
 
 def checkImageIsValid(imageBin):
     isvalid = True
@@ -23,10 +29,12 @@ def checkImageIsValid(imageBin):
 
     return isvalid, imgH, imgW
 
+
 def writeCache(env, cache):
     with env.begin(write=True) as txn:
         for k, v in cache.items():
             txn.put(k.encode(), v)
+
 
 def createDataset(outputPath, root_dir, annotation_path):
     """
@@ -93,13 +101,70 @@ def createDataset(outputPath, root_dir, annotation_path):
     sys.stdout.flush()
 
 
-def get_text_from_img_name(img_path, label_root = '../../data/labels'):
-    label_file = os.path.join(label_root,img_path.split('/')[-1].replace('jpg','txt'))
-    with open(label_file, 'r') as f:
-        pass
+def cut_img(img,offsets):
+    x1,y1,x2,y2,x3,y3,x4,y4 = offsets
+    top_left_x = min([x1,x2,x3,x4])
+    top_left_y = min([y1,y2,y3,y4])
+    bot_right_x = max([x1,x2,x3,x4])
+    bot_right_y = max([y1,y2,y3,y4])
+    crop_img = img[top_left_y:bot_right_y+1, top_left_x:bot_right_x+1]
+    return Image.fromarray(crop_img)
+    # plt.imshow(crop_img)
+    # plt.show()
 
 
-def create_anno(path_to_label, path_to_img_folder, save_file):
-    img_paths = glob.glob(os.path.join(path_to_img_folder,'*.jpg'))
-    with open(save_file,'w') as f:
-        pass
+def get_info_from_img_name(img_path, config):
+    total = []
+    label_path = os.path.join(config['dataset']['data_root'],config['dataset']['labels_folder'],img_path.split('/')[-1].replace('jpg','txt'))
+    with open(label_path, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            line = line.split(',')
+            text = line[-1][:-1]
+            offsets = line[:-1]
+            total.append([offsets,text])
+    return total
+
+
+def create_anno(config):
+    save_path = os.path.join(config['dataset']['data_root'],config['dataset']['save_folder'])
+    if not os.path.isdir(save_path):
+        os.mkdir(save_path)
+        os.mkdir(os.path.join(save_path,'all_imgs'))
+    save_all_img_folder = os.path.join(save_path,'all_imgs')
+    train_img_paths = glob.glob(os.path.join(config['dataset']['data_root'],config['dataset']['train_folder'],'*.jpg'))
+    test_img_paths = glob.glob(os.path.join(config['dataset']['data_root'],config['dataset']['test_folder'],'*.jpg'))
+    train_annotation = os.path.join(save_path,config['dataset']['train_annotation'])
+    test_annotation = os.path.join(save_path,config['dataset']['test_annotation'])
+
+    idx = 1
+    with open(train_annotation, 'w') as f:
+        for img_path in tqdm(train_img_paths):
+            img = np.array(Image.open(img_path))
+            for offsets, text in get_info_from_img_name(img_path,config):
+                try:
+                    crop_img = cut_img(img, (int(offsets[0]),int(offsets[1]),int(offsets[2]),int(offsets[3]),int(offsets[4]),int(offsets[5]),int(offsets[6]),int(offsets[7])))
+                    crop_img.save(os.path.join(save_all_img_folder,f'{idx}.jpg'))
+                    f.write('all_imgs/' + f'{idx}.jpg ' + text+ '\n')
+                    idx += 1
+                except:
+                    print("Label might be wrong !")
+
+    with open(test_annotation, 'w') as f:
+        for img_path in tqdm(test_img_paths):
+            img = np.array(Image.open(img_path))
+            for offsets, text in get_info_from_img_name(img_path,config):
+                try:
+                    crop_img = cut_img(img, (int(offsets[0]),int(offsets[1]),int(offsets[2]),int(offsets[3]),int(offsets[4]),int(offsets[5]),int(offsets[6]),int(offsets[7])))
+                    crop_img.save(os.path.join(save_all_img_folder,f'{idx}.jpg'))
+                    f.write('all_imgs/' + f'{idx}.jpg ' + text+ '\n')
+                    idx += 1
+                except:
+                    print("Label might be wrong !")
+
+
+if __name__ == '__main__':
+    config = Cfg.load_config_from_name('base')
+    create_anno(config)
+
+    
