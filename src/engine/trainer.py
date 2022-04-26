@@ -8,7 +8,7 @@ from src.utils.logger import Logger
 from src.datasets.aug import ImgAugTransform
 from src.datasets.dataloader_v1 import DataGen
 from src.datasets.dataloader import OCRDataset, ClusterRandomSampler, Collator
-from torch.utils.data import Datadatasets
+from torch.utils.data import Dataset, DataLoader
 import torch
 from torch.optim.lr_scheduler import CosineAnnealingLR, CyclicLR, OneCycleLR
 from src.utils.utils import compute_accuracy
@@ -49,7 +49,7 @@ class Trainer():
         if logger:
             self.logger = Logger(logger)
 
-        if pretrained:
+        if not pretrained:
             weight_file = download_weights(**config['pretrain'], quiet=config['quiet'])
             self.load_weights(weight_file)
 
@@ -315,14 +315,14 @@ class Trainer():
         sampler = ClusterRandomSampler(dataset, self.batch_size, True)
         collate_fn = Collator(masked_language_model)
 
-        gen = Datadatasets(
+        gen = DataLoader(
             dataset,
             batch_size=self.batch_size,
             sampler=sampler,
             collate_fn=collate_fn,
             shuffle=False,
             drop_last=False,
-            **self.config['datadatasets'])
+            **self.config['dataloader'])
 
         return gen
 

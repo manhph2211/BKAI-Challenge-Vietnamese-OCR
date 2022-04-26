@@ -3,12 +3,12 @@ import os
 import  glob
 import lmdb # install lmdb by "pip install lmdb"
 import cv2
+import yaml
+from yaml.loader import SafeLoader
 import numpy as np
 from tqdm import tqdm
 import matplotlib.pyplot as plt 
 from PIL import Image
-import sys
-sys.path.append('/home/max/coding/TransOCR-Pytorch')
 from configs import Cfg
 
 
@@ -121,6 +121,8 @@ def get_info_from_img_name(img_path, config):
         for line in lines:
             line = line.split(',')
             text = line[-1][:-1]
+            if len(text) == 0:
+                continue
             offsets = line[:-1]
             total.append([offsets,text])
     return total
@@ -133,9 +135,9 @@ def create_anno(config):
         os.mkdir(os.path.join(save_path,'all_imgs'))
     save_all_img_folder = os.path.join(save_path,'all_imgs')
     train_img_paths = glob.glob(os.path.join(config['dataset']['data_root'],config['dataset']['train_folder'],'*.jpg'))
-    test_img_paths = glob.glob(os.path.join(config['dataset']['data_root'],config['dataset']['test_folder'],'*.jpg'))
+    test_img_paths = glob.glob(os.path.join(config['dataset']['data_root'],config['dataset']['valid_folder'],'*.jpg'))
     train_annotation = os.path.join(save_path,config['dataset']['train_annotation'])
-    test_annotation = os.path.join(save_path,config['dataset']['test_annotation'])
+    test_annotation = os.path.join(save_path,config['dataset']['valid_annotation'])
 
     idx = 1
     with open(train_annotation, 'w') as f:
@@ -145,7 +147,7 @@ def create_anno(config):
                 try:
                     crop_img = cut_img(img, (int(offsets[0]),int(offsets[1]),int(offsets[2]),int(offsets[3]),int(offsets[4]),int(offsets[5]),int(offsets[6]),int(offsets[7])))
                     crop_img.save(os.path.join(save_all_img_folder,f'{idx}.jpg'))
-                    f.write('all_imgs/' + f'{idx}.jpg ' + text+ '\n')
+                    f.write('all_imgs/' + f'{idx}.jpg\t' + text+ '\n')
                     idx += 1
                 except:
                     print("Label might be wrong !")
@@ -157,14 +159,15 @@ def create_anno(config):
                 try:
                     crop_img = cut_img(img, (int(offsets[0]),int(offsets[1]),int(offsets[2]),int(offsets[3]),int(offsets[4]),int(offsets[5]),int(offsets[6]),int(offsets[7])))
                     crop_img.save(os.path.join(save_all_img_folder,f'{idx}.jpg'))
-                    f.write('all_imgs/' + f'{idx}.jpg ' + text+ '\n')
+                    f.write('all_imgs/' + f'{idx}.jpg\t' + text+ '\n')
                     idx += 1
                 except:
                     print("Label might be wrong !")
 
 
 if __name__ == '__main__':
-    config = Cfg.load_config_from_name('base')
+    with open('/home/edabk/phumanhducanh/BKAI/TransOCR-Pytorch/configs/base.yml', 'r') as f:
+        config = yaml.load(f, Loader=SafeLoader)
     create_anno(config)
 
     

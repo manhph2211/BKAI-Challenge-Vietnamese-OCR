@@ -10,7 +10,7 @@ class Predictor():
         device = config['device']
         
         model, vocab = build_model(config)
-        weights = '/tmp/weights.pth'
+        weights = '/home/edabk/phumanhducanh/BKAI/TransOCR-Pytorch/checkpoints/transformerocr.pth'
 
         if config['weights'].startswith('http'):
             weights = download_weights(config['weights'])

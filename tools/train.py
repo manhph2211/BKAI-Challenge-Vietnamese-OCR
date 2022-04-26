@@ -1,5 +1,5 @@
 import argparse
-from src.model import Trainer
+from src.engine import Trainer
 from configs import Cfg
 
 
@@ -19,5 +19,5 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
+    main()
     pass

@@ -94,17 +94,17 @@ def rename(json_file_name):
         item["image_path"] = new_image_path
         item["gt_path"] = new_gt_path
 
-    save_json(data, "new_"+json_file_name)
+    save_json(data, json_file_name)
 
 
 if __name__ == "__main__":
-    data = export_data()
-    json_file_name = '/home/max/coding/Vietnamese-scene-text-detection-and-recognition/data/data.json'
+    data = export_data('/home/edabk/phumanhducanh/BKAI/data')
+    json_file_name = '/home/edabk/phumanhducanh/BKAI/data/vietnamese/data.json'
     save_json(data,json_file_name)
     random_idx = random.randrange(0, len(data)-1)
     print(data[random_idx]["image_path"])
     print("Index:", random_idx)
-    anns = load_ann(data[random_idx]["gt_path"])
-    image_test = cv2.imread(data[random_idx]["image_path"])
+    #anns = load_ann(data[random_idx]["gt_path"])
+    #image_test = cv2.imread(data[random_idx]["image_path"])
     # draw(image_test, anns)
-    # rename(json_file_name)
+    rename(json_file_name)
