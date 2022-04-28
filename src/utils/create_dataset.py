@@ -101,6 +101,12 @@ def createDataset(outputPath, root_dir, annotation_path):
     sys.stdout.flush()
 
 
+def run(img_path):
+    txt_path = img_path[4:].replace("jpg","txt")
+    if not os.path.isdir(img_path.replace("jpg","")):
+        os.makedirs(img_path.replace("jpg",""))
+            
+
 def cut_img(img,offsets):
     x1,y1,x2,y2,x3,y3,x4,y4 = offsets
     top_left_x = min([x1,x2,x3,x4])
@@ -145,9 +151,12 @@ def create_anno(config):
             img = np.array(Image.open(img_path))
             for offsets, text in get_info_from_img_name(img_path,config):
                 try:
+                    if "##" in text:
+                        continue
                     crop_img = cut_img(img, (int(offsets[0]),int(offsets[1]),int(offsets[2]),int(offsets[3]),int(offsets[4]),int(offsets[5]),int(offsets[6]),int(offsets[7])))
                     crop_img.save(os.path.join(save_all_img_folder,f'{idx}.jpg'))
-                    f.write('all_imgs/' + f'{idx}.jpg\t' + text+ '\n')
+                    f.write('all_imgs/' + f'{idx}.jpg\t' + text + '\n')
+                    
                     idx += 1
                 except:
                     print("Label might be wrong !")
@@ -157,9 +166,11 @@ def create_anno(config):
             img = np.array(Image.open(img_path))
             for offsets, text in get_info_from_img_name(img_path,config):
                 try:
+                    if "##" in text:
+                        continue
                     crop_img = cut_img(img, (int(offsets[0]),int(offsets[1]),int(offsets[2]),int(offsets[3]),int(offsets[4]),int(offsets[5]),int(offsets[6]),int(offsets[7])))
-                    crop_img.save(os.path.join(save_all_img_folder,f'{idx}.jpg'))
-                    f.write('all_imgs/' + f'{idx}.jpg\t' + text+ '\n')
+                    crop_img.save(os.path.join(save_all_img_folder, f'{idx}.jpg'))
+                    f.write('all_imgs/' + f'{idx}.jpg\t' + text + '\n')
                     idx += 1
                 except:
                     print("Label might be wrong !")

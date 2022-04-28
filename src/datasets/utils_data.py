@@ -85,10 +85,10 @@ def load_json(json_file_name):
 def rename(json_file_name):
     data = load_json(json_file_name)
     for i,item in enumerate(data):
-        new_image_path = item["image_path"].replace(item["image_path"].split('/')[-1],str(i)+'.jpg')
+        new_image_path = item["image_path"].replace(item["image_path"].split('/')[-1],str(i + 1000)+'.jpg')
         os.rename(item["image_path"],new_image_path)
 
-        new_gt_path = item["gt_path"].replace(item["gt_path"].split('/')[-1],str(i)+'.txt')
+        new_gt_path = item["gt_path"].replace(item["gt_path"].split('/')[-1],str(i + 1000)+'.txt')
         os.rename(item["gt_path"],new_gt_path)
 
         item["image_path"] = new_image_path

@@ -25,6 +25,7 @@ class Cfg(dict):
 
         with open(fname, encoding='utf-8') as f:
             config = yaml.safe_load(f)
+        print(config)
 
         base_config.update(config)
         return Cfg(base_config)
