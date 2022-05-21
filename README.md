@@ -21,7 +21,7 @@ $ cd TransOCR-Pytorch/src/dataset
 $ python utils_data.py
 ```
 
-# Setup môi trường :smiley: 
+# Setup môi trường 
 
 - Chúng ta có thể sử dụng conda ở đây cho việc cài đặt môi trường và các required packages
 
@@ -31,7 +31,7 @@ $ conda activate BKAI
 $ pip install -r requirements.txt
 ```
 
-# Quá trình tiến hành :smiley: 
+# Quá trình tiến hành 
 
 ## Train DB
  
