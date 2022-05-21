@@ -1,4 +1,4 @@
-BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition
+BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition :smiley: 
 ====
 
 # Giới thiệu :smile:
@@ -7,7 +7,7 @@ BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition
 
 - Mô tả pipeline
 
-# Chuẩn bị dữ liệu :smiley: 
+# Chuẩn bị dữ liệu 
 
 - Unzip file `vietnamese_original.zip`, `train_imgs.zip`, `train_gt.zip`, sau đó lưu vào trong folder `src/data`
 
@@ -87,7 +87,7 @@ $ cd TranssOCR-Pytorch/tools
 $ CUDA_VISIBLE_DEVICES=0,1 train.py
 ```
 
-## Demo :smiley: 
+## Demo 
 
 - Cuối cùng để demo, chúng ta tiến hành gõ các lệnh lần lượt:
 
