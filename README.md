@@ -33,7 +33,7 @@ $ pip install -r requirements.txt
 
 # Quá trình tiến hành 
 
-## Train DB
+## Text Detection
  
 - Đầu tiên, chúng ta cần:
 
