@@ -4,8 +4,14 @@ BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition :smi
 # Giới thiệu :smile:
 
 - Cuộc thi BKAI-NAVER Challenge 2022 được tổ chức tại Đại Học Bách Khoa Hà Nội với 3 tracks. Trong đó, track 3 sẽ được thực hiện bởi nhóm trong repo này. Nhóm đã đạt được kết quả LOL và xếp hạng thứ LOL. Đây thực sự là một trải nghiệm tuyệt vời <3
+![image](https://user-images.githubusercontent.com/61444616/169662978-1faf6fe5-5594-4198-870e-6b415ddfa52b.png)
+
+- Team `ED4BK` với các thành viên Phú, Đức Anh và Mạnh:
+![image](https://user-images.githubusercontent.com/61444616/169662957-8221f7fd-799b-44d5-9f4b-788cf2637a93.png)
 
 - Mô tả pipeline
+![image](https://user-images.githubusercontent.com/61444616/169663007-fdc470a0-e858-440d-9478-03c9dd676de9.png)
+
 
 # Chuẩn bị dữ liệu 
 
