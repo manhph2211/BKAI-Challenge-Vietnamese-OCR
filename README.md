@@ -5,11 +5,11 @@ BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition
 
 - Cuộc thi BKAI-NAVER Challenge 2022 được tổ chức tại Đại Học Bách Khoa Hà Nội với 3 tracks. Trong đó, track 3 sẽ được thực hiện bởi nhóm trong repo này. Nhóm đã đạt được kết quả LOL và xếp hạng thứ LOL. Đây thực sự là một trải nghiệm tuyệt vời <3
 
-- Mô tả pipeline 
+- Mô tả pipeline
 
 # Chuẩn bị dữ liệu :smiley: 
 
-- unzip file `vietnamese_original.zip`, `train_imgs.zip`, `train_gt.zip`, sau đó lưu vào trong folder `src/data`
+- Unzip file `vietnamese_original.zip`, `train_imgs.zip`, `train_gt.zip`, sau đó lưu vào trong folder `src/data`
 
 - Đồi tên file data: (nhom da thưc hiện đổi tên về dạng index.jpg, index.txt (index từ 0 đén 2499) và lưu vào trong `data.zip`)
 
@@ -21,7 +21,7 @@ $ cd TransOCR-Pytorch/src/dataset
 $ python utils_data.py
 ```
 
-# Setup môi trường
+# Setup môi trường :smiley: 
 
 - Chúng ta có thể sử dụng conda ở đây cho việc cài đặt môi trường và các required packages
 
@@ -31,7 +31,7 @@ $ conda activate BKAI
 $ pip install -r requirements.txt
 ```
 
-# Quá trình tiến hành
+# Quá trình tiến hành :smiley: 
 
 ## Train DB
  
@@ -87,7 +87,7 @@ $ cd TranssOCR-Pytorch/tools
 $ CUDA_VISIBLE_DEVICES=0,1 train.py
 ```
 
-## Demo
+## Demo :smiley: 
 
 - Cuối cùng để demo, chúng ta tiến hành gõ các lệnh lần lượt:
 
@@ -97,3 +97,9 @@ $ CUDA_VISIBLE_DEVICES=0 python demo.py experiments/seg_detector/totaltext_resne
 $ cd TransOCR-Pytorch/tools
 $ CUDA_VISIBLE_DEVICES=0 python submit.py
 ```
+
+# Kết luận
+
+# Hướng phát triển
+
+# Tài liệu tham khảo
