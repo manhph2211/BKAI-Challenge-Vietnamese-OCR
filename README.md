@@ -98,7 +98,7 @@ $ CUDA_VISIBLE_DEVICES=0,1 train.py
 
 ```
 $ cd DB
-$ CUDA_VISIBLE_DEVICES=0 python demo.py experiments/seg_detector/totaltext_resnet50_deform_thre.yaml --resume workspace/SegDetectorModel-seg_detector/deformable_resnet50/L1BalanceCELoss/model/model_epoch_66_minibatch_4500 --image_path ../data/public_test_img --visualize --box_thresh 0.35 --margin 40 --thresh 0.28
+$ CUDA_VISIBLE_DEVICES=0 python esemble_demo.py --exp_db experiments/seg_detector/totaltext_resnet50_deform_thre.yaml --exp_dbplus experiments/ASF/totaltext_resnet50_deform_thre_asf.yaml --checkpoint_dbplus workspace/SegDetectorModel-seg_detector/deformable_resnet50/L1BalanceCELoss/model/final --checkpoint_db workspace/SegDetectorModel-seg_detector/deformable_resnet50/L1BalanceCELoss/model/DBNet/model_epoch_66_minibatch_4500 --image_path ../private_test --visualize --box_thresh 0.35 --margin_scale_h 0.25 --margin_scale_w 0.3 --thresh 0.25
 $ cd TransOCR-Pytorch/tools
 $ CUDA_VISIBLE_DEVICES=0 python submit.py
 ```
