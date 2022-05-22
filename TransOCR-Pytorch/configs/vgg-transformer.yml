@@ -1,0 +1,28 @@
+pretrain: 
+    id_or_url: None
+    md5: None
+    cached: None
+
+# url or local path
+weights: None
+
+backbone: vgg19_bn
+cnn:
+    pretrained: True
+    # pooling stride size
+    ss:
+        - [2, 2]
+        - [2, 2]
+        - [2, 1]
+        - [2, 1]
+        - [1, 1]         
+    # pooling kernel size 
+    ks:
+        - [2, 2]
+        - [2, 2]
+        - [2, 1]
+        - [2, 1]
+        - [1, 1]
+    # dim of ouput feature map
+    hidden: 256
+

@@ -1,0 +1,16 @@
+pyyaml 
+tqdm 
+tensorboardX 
+anyconfig 
+munch 
+scipy 
+sortedcontainers 
+shapely 
+pyclipper 
+gevent 
+gevent-websocket 
+flask 
+editdistance 
+scikit-image 
+imgaug==0.2.8
+
