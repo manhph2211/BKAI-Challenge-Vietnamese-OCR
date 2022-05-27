@@ -3,7 +3,7 @@ BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition :smi
 
 # Giới thiệu :smile:
 
-- Cuộc thi BKAI-NAVER Challenge 2022 được tổ chức tại Đại Học Bách Khoa Hà Nội với 3 tracks. Trong đó, track 3 sẽ được thực hiện bởi nhóm trong repo này. Nhóm đã đạt được kết quả khá tốt và xếp hạng thứ 7 chung cuộc, kết quả của nhóm còn có thể tốt hơn nhiều nếu đầy đủ sức mạnh tài nguyên :smile: . Đây thực sự là một trải nghiệm tuyệt vời <3
+- Cuộc thi BKAI-NAVER Challenge 2022 được tổ chức tại Đại Học Bách Khoa Hà Nội với 3 tracks. Trong đó, track 3 sẽ được thực hiện bởi nhóm trong repo này. Nhóm đã đạt được kết quả khá tốt 😸, kết quả của nhóm còn có thể tốt hơn nhiều nếu đầy đủ sức mạnh tài nguyên :smile: . Đây thực sự là một trải nghiệm tuyệt vời <3
 <!-- ![image](https://user-images.githubusercontent.com/61444616/169662978-1faf6fe5-5594-4198-870e-6b415ddfa52b.png) -->
 
 - Team với các thành viên Phú, Đức Anh và Mạnh:
