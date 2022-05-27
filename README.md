@@ -1,4 +1,4 @@
-BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition :smiley: 
+BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition 
 ====
 
 # Giới thiệu :smile:
