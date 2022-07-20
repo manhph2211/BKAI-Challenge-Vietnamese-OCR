@@ -22,6 +22,7 @@ BKAI-NAVER Challenge 2022 - Vietnamese Scene Text Detection and Recognition
 </p>
 
 # Chuẩn bị dữ liệu 
+- Tập dữ liệu public và private có tải về từ <a href="https://drive.google.com/drive/folders/1WNOk3EMSgawdbrHeLiO7N_WcapgmbdmV">dataset 1</a>, <a href="https://drive.google.com/file/d/1UUQhNvzgpZy7zXBFQp0Qox-BBjunZ0ml/view?usp=sharing">dataset 2</a>, <a href="https://drive.google.com/drive/folders/14jV4W7Cdz5Q-znwhY0GenLrWzKbgS4ah?usp=sharing">public test</a>.
 
 - Unzip file `vietnamese_original.zip`, `train_imgs.zip`, `train_gt.zip`, sau đó lưu vào trong folder `src/data`
 
@@ -103,7 +104,7 @@ $ CUDA_VISIBLE_DEVICES=0,1 train.py
 
 ## Demo 
 
-- Cuối cùng để demo, chúng ta tiến hành gõ các lệnh lần lượt:
+- Cuối cùng để demo, chúng ta tiến hành gõ các lệnh lần lượt: 
 
 ```
 $ cd DB
@@ -111,6 +112,7 @@ $ CUDA_VISIBLE_DEVICES=0 python esemble_demo.py --exp_db experiments/seg_detecto
 $ cd TransOCR-Pytorch/tools
 $ CUDA_VISIBLE_DEVICES=0 python submit.py
 ```
+- Các bạn có thể tham khảo [checkpoint](https://drive.google.com/file/d/190ruQxYy7xvpjutmgJ6HDJ26xdG_dv5s/view?usp=sharing) do nhóm mình training trong cuộc thi.
 
 # Kết luận
 
@@ -119,8 +121,8 @@ $ CUDA_VISIBLE_DEVICES=0 python submit.py
 # Hướng phát triển
 
 - Gen thêm scene text data, training thêm cả 2 task với dữ liệu lớn
-- Triển khai thay thế models hiện tại bằng những models tốt, và phù hợp hơn cho cả 2 tasks
-- Triển khai ensemble task2, đong thơi xem xét bước hậu xử lý text (auto correct some cases,...)
+- Thử nghiệm mô hình Craft để kết hợp trong task 1
+- Triển khai ensemble task 2 với ABCNet và SRN, đong thời xem xét bước hậu xử lý text (auto correct some cases,...)
 - Tối ưu hyper parameters( đặc biệt là các thresolds, ...)
 - Viết Flask API để deploy hệ thống
 
