@@ -87,6 +87,7 @@ $ python run.py -c 20000 -k 15 -rk -rbl -tc '#000000,#888888' --fit -i path_to_c
 $ cd data/custom_data/
 $ python custom.py
 ```
+## Text Recognition
 
 - Tạo dataset cho VietOCR
 
